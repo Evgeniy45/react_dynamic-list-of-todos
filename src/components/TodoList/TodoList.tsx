@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Todo } from '../../types/Todo';
+import classNames from 'classnames';
 
 type TodoListProps = {
   todos: Todo[];
@@ -32,7 +33,9 @@ export const TodoList: React.FC<TodoListProps> = ({
           <tr
             key={todo.id}
             data-cy="todo"
-            className={selectedTodo?.id === todo.id ? 'is-selected' : ''}
+            className={classNames({
+              'is-selected': selectedTodo?.id === todo.id,
+            })}
           >
             <td className="is-vcentered">{todo.id}</td>
             {todo.completed ? (
@@ -46,9 +49,10 @@ export const TodoList: React.FC<TodoListProps> = ({
             )}
             <td className="is-vcentered is-expanded">
               <p
-                className={
-                  todo.completed ? 'has-text-success' : 'has-text-danger'
-                }
+                className={classNames({
+                  'has-text-success': todo.completed,
+                  'has-text-danger': !todo.completed,
+                })}
               >
                 {todo.title}
               </p>
@@ -63,7 +67,10 @@ export const TodoList: React.FC<TodoListProps> = ({
                 <span className="icon">
                   {/* className="far fa-eye-slash"  */}
                   <i
-                    className={`far ${selectedTodo?.id === todo.id ? 'fa-eye-slash' : 'fa-eye'}`}
+                    className={classNames('far', {
+                      'fa-eye-slash': selectedTodo?.id === todo.id,
+                      'fa-eye': selectedTodo?.id !== todo.id,
+                    })}
                   />
                 </span>
               </button>

@@ -17,11 +17,11 @@ const getFilteredTodos = (
 ) => {
   let filteredTodos = todos;
 
-  const searchTrimedTower = search.trim().toLowerCase();
+  const searchTextLowerCase = search.trim().toLowerCase();
 
-  if (searchTrimedTower !== '') {
+  if (searchTextLowerCase !== '') {
     filteredTodos = filteredTodos.filter(todo =>
-      todo.title.toLowerCase().includes(searchTrimedTower),
+      todo.title.toLowerCase().includes(searchTextLowerCase),
     );
   }
 

@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { Dispatch, SetStateAction } from 'react';
 
 export enum CompletedFilter {
@@ -33,7 +34,11 @@ export const TodoFilter = ({
       </span>
     </p>
 
-    <p className="control is-expanded has-icons-left has-icons-right">
+    <p
+      className={classNames('control is-expanded has-icons-left', {
+        'has-icons-right': search !== '',
+      })}
+    >
       <input
         data-cy="searchInput"
         type="text"
